@@ -272,9 +272,7 @@ h1 {
 .summary-card {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 88% 10%, rgba(16, 185, 129, 0.24), transparent 30%),
-    linear-gradient(135deg, #0f766e 0%, #115e59 58%, #f8fafc 58.2%, #ecfdf5 100%);
+  background: linear-gradient(135deg, #0f766e, #10b981);
   color: #fff;
   border: 1px solid rgba(15, 118, 110, 0.12);
 }
@@ -286,7 +284,7 @@ h1 {
   width: 310px;
   height: 310px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.22);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .summary-card > * {
@@ -305,8 +303,8 @@ h1 {
 }
 
 .summary-icon {
-  width: 64px;
-  height: 64px;
+  width: 58px;
+  height: 58px;
   display: grid;
   place-items: center;
   border-radius: 18px;
@@ -317,7 +315,7 @@ h1 {
 .amount {
   display: block;
   font-family: Didot, "Bodoni 72", Georgia, "Times New Roman", serif;
-  font-size: clamp(2.9rem, 7vw, 5.5rem);
+  font-size: clamp(2.8rem, 6vw, 5.1rem);
   letter-spacing: 0;
   line-height: 0.92;
 }
@@ -327,7 +325,7 @@ h1 {
 }
 
 .progress-wrap {
-  margin: 24px 0 8px;
+  margin: 20px 0 8px;
   padding: 14px;
   border: 1px solid rgba(248, 250, 252, 0.18);
   border-radius: 16px;
@@ -354,14 +352,14 @@ h1 {
 .progress-fill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--accent), #f8fafc);
+  background: linear-gradient(90deg, #f8fafc, #d1fae5);
 }
 
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin: 18px 0 14px;
+  margin: 14px 0;
 }
 
 .summary-grid div {
