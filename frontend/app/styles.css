@@ -7,6 +7,8 @@
   --line: #dfe7e3;
   --primary: #047857;
   --primary-dark: #065f46;
+  --primary-deep: #063f31;
+  --soft-green: #eef8f3;
   --mint: #ccfbf1;
   --danger: #c2410c;
 }
@@ -19,7 +21,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Avenir Next", Avenir, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 button,
@@ -40,6 +42,12 @@ button {
   padding: 24px;
 }
 
+.auth-screen {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(16, 185, 129, 0.16), transparent 28%),
+    linear-gradient(145deg, #f8fbfa 0%, #eef5f1 44%, #f7faf8 100%);
+}
+
 .auth-card,
 .panel,
 .summary-card {
@@ -50,19 +58,22 @@ button {
 }
 
 .auth-card {
-  width: min(440px, 100%);
-  padding: 28px;
+  width: min(940px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 0;
+  overflow: hidden;
 }
 
-.auth-card label,
+.auth-form label,
 .form-grid input,
 .form-grid select,
 .paycheck-editor input,
-.auth-card input {
+.auth-form input {
   width: 100%;
 }
 
-.auth-card label {
+.auth-form label {
   display: grid;
   gap: 7px;
   margin: 14px 0;
@@ -74,9 +85,58 @@ input,
 select {
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 12px 13px;
+  padding: 13px 14px;
   background: #fff;
   color: var(--text);
+}
+
+input:focus,
+select:focus {
+  border-color: rgba(4, 120, 87, 0.5);
+  box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.09);
+  outline: none;
+}
+
+.auth-welcome,
+.auth-form {
+  padding: clamp(28px, 5vw, 52px);
+}
+
+.auth-welcome {
+  background:
+    linear-gradient(150deg, rgba(6, 78, 59, 0.92), rgba(4, 120, 87, 0.9)),
+    linear-gradient(135deg, #064e3b, #10b981);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 560px;
+}
+
+.auth-welcome h1 {
+  max-width: 430px;
+  margin: 16px 0;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.7rem, 6vw, 4.65rem);
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.auth-copy {
+  max-width: 430px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.brand-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.03em;
 }
 
 .logo-mark {
@@ -88,7 +148,50 @@ select {
   background: linear-gradient(135deg, #064e3b, #10b981);
   color: #fff;
   font-weight: 800;
+  box-shadow: 0 16px 34px rgba(3, 47, 35, 0.22);
+}
+
+.brand-row .logo-mark {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: none;
+}
+
+.auth-highlights {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.auth-highlights span {
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(255, 255, 255, 0.11);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.auth-form {
+  align-self: center;
+}
+
+.form-heading {
   margin-bottom: 18px;
+}
+
+.form-heading h2 {
+  margin-bottom: 6px;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.form-heading p {
+  color: var(--muted);
+  line-height: 1.5;
 }
 
 .app-shell {
@@ -203,10 +306,11 @@ h1 {
 }
 
 .primary-button {
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   padding: 12px 16px;
   font-weight: 750;
+  box-shadow: 0 12px 22px rgba(4, 120, 87, 0.22);
 }
 
 .primary-button:hover {
@@ -294,5 +398,17 @@ h1 {
   .paycheck-editor {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .auth-card {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-welcome {
+    min-height: auto;
+  }
+
+  .auth-welcome h1 {
+    font-size: 2.45rem;
   }
 }
