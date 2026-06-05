@@ -628,3 +628,4 @@ cython_debug/
 .pypirc
 .DS_Store
 .vscode
+frontend/.next/
