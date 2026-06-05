@@ -629,3 +629,5 @@ cython_debug/
 .DS_Store
 .vscode
 frontend/.next/
+!frontend/lib/
+!frontend/lib/**
