@@ -75,6 +75,18 @@ export default function Home() {
 
   return (
     <main className="app-shell">
+      {showExpenseForm && (
+        <div className="modal-backdrop" onClick={() => setShowExpenseForm(false)}>
+          <div className="modal-panel" onClick={(event) => event.stopPropagation()}>
+            <ExpenseForm
+              userId={session.user.id}
+              onClose={() => setShowExpenseForm(false)}
+              onSaved={() => loadData(session.user.id)}
+            />
+          </div>
+        </div>
+      )}
+
       <section className="topbar">
         <div>
           <p className="eyebrow">Welcome back, {displayName}</p>
@@ -120,7 +132,7 @@ export default function Home() {
         />
       </section>
 
-      <section className="actions-row">
+      <section className="actions-row" aria-label="Dashboard actions">
         <button className="primary-button" onClick={() => setShowExpenseForm(true)}>
           <Plus size={18} />
           Add Expense
@@ -137,14 +149,6 @@ export default function Home() {
 
       <section className="content-grid">
         <div>
-          {showExpenseForm && (
-            <ExpenseForm
-              userId={session.user.id}
-              onClose={() => setShowExpenseForm(false)}
-              onSaved={() => loadData(session.user.id)}
-            />
-          )}
-
           {showStatements ? (
             <StatementsView expenses={expenses} monthKeys={statementMonths} />
           ) : (

@@ -30,21 +30,32 @@ export function PaycheckPanel({ userId, monthKey, paycheck, onSaved }: Props) {
 
   if (!isEditing) {
     return (
-      <button className="small-link" onClick={() => setIsEditing(true)}>
+      <button className="small-link paycheck-trigger" onClick={() => setIsEditing(true)}>
         {paycheck > 0 ? "Edit paycheck" : "Add paycheck"}
       </button>
     );
   }
 
   return (
-    <div className="paycheck-editor">
-      <input value={amount} onChange={(event) => setAmount(event.target.value)} placeholder="This month's paycheck" />
-      <button className="primary-button compact" onClick={save}>
-        Save
-      </button>
-      <button className="ghost-button compact" onClick={() => setIsEditing(false)}>
-        Done
-      </button>
+    <div className="paycheck-popover">
+      <div>
+        <strong>{paycheck > 0 ? "Update paycheck" : "Add paycheck"}</strong>
+        <p>Save this month&apos;s income so CashTrack can calculate what remains.</p>
+      </div>
+      <div className="paycheck-editor">
+        <input
+          value={amount}
+          onChange={(event) => setAmount(event.target.value)}
+          placeholder="This month's paycheck"
+          type="number"
+        />
+        <button className="primary-button compact" onClick={save}>
+          Save
+        </button>
+        <button className="ghost-button compact" onClick={() => setIsEditing(false)}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }
