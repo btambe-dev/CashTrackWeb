@@ -13,21 +13,32 @@ export function ExpenseList({ expenses, onDeleted }: { expenses: Expense[]; onDe
 
   return (
     <section className="panel">
-      <h2>Expenses</h2>
+      <div className="panel-title">
+        <div>
+          <p className="eyebrow">Recent activity</p>
+          <h2>Expenses</h2>
+        </div>
+        <span className="count-pill">{expenses.length}</span>
+      </div>
       {expenses.length === 0 ? (
-        <p className="muted">No expenses yet.</p>
+        <div className="empty-state">
+          <strong>No expenses yet</strong>
+          <p className="muted">Add your first expense to start seeing your monthly spending picture.</p>
+        </div>
       ) : (
         <div className="expense-list">
           {expenses.map((expense) => (
             <article className="expense-row" key={expense.id}>
-              <div>
+              <div className="expense-main">
+                <span className="category-chip">{expense.category}</span>
                 <strong>{expense.title}</strong>
                 <span>
-                  {expense.category} · {new Date(`${expense.spent_at}T00:00:00`).toLocaleDateString()}
+                  {new Date(`${expense.spent_at}T00:00:00`).toLocaleDateString()}
+                  {expense.note ? ` · ${expense.note}` : ""}
                 </span>
               </div>
               <div className="row-actions">
-                <strong>{formatCurrency(Number(expense.amount))}</strong>
+                <strong className="expense-amount">{formatCurrency(Number(expense.amount))}</strong>
                 <button className="icon-button" onClick={() => remove(expense.id)} aria-label="Delete expense">
                   <Trash2 size={16} />
                 </button>

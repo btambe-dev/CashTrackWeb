@@ -17,9 +17,12 @@ export function AuthView() {
       const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: { data: { name } }
+        options: {
+          data: { name },
+          emailRedirectTo: window.location.origin
+        }
       });
-      setMessage(error ? error.message : "Account created. Check your email if confirmation is enabled.");
+      setMessage(error ? error.message : "Account created. Open the confirmation link we sent to your email.");
       return;
     }
 

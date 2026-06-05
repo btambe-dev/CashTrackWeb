@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function PaycheckPanel({ userId, monthKey, paycheck, onSaved }: Props) {
-  const [isEditing, setIsEditing] = useState(paycheck === 0);
+  const [isEditing, setIsEditing] = useState(false);
   const [amount, setAmount] = useState(paycheck > 0 ? String(paycheck) : "");
 
   async function save() {
@@ -31,7 +31,7 @@ export function PaycheckPanel({ userId, monthKey, paycheck, onSaved }: Props) {
   if (!isEditing) {
     return (
       <button className="small-link" onClick={() => setIsEditing(true)}>
-        Edit paycheck
+        {paycheck > 0 ? "Edit paycheck" : "Add paycheck"}
       </button>
     );
   }
@@ -42,11 +42,9 @@ export function PaycheckPanel({ userId, monthKey, paycheck, onSaved }: Props) {
       <button className="primary-button compact" onClick={save}>
         Save
       </button>
-      {paycheck > 0 && (
-        <button className="ghost-button compact" onClick={() => setIsEditing(false)}>
-          Done
-        </button>
-      )}
+      <button className="ghost-button compact" onClick={() => setIsEditing(false)}>
+        Done
+      </button>
     </div>
   );
 }

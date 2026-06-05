@@ -54,9 +54,18 @@ export function StatementsView({ expenses, monthKeys }: Props) {
 
   return (
     <section className="panel">
-      <h2>Monthly statements</h2>
+      <div className="panel-title">
+        <div>
+          <p className="eyebrow">Reports</p>
+          <h2>Monthly statements</h2>
+        </div>
+        <span className="count-pill">{monthKeys.length}</span>
+      </div>
       {monthKeys.length === 0 ? (
-        <p className="muted">No statements yet.</p>
+        <div className="empty-state">
+          <strong>No statements yet</strong>
+          <p className="muted">Statements appear automatically as soon as you start logging expenses.</p>
+        </div>
       ) : (
         <div className="statement-list">
           {monthKeys.map((monthKey) => {
@@ -67,10 +76,10 @@ export function StatementsView({ expenses, monthKeys }: Props) {
               <article className="statement-row" key={monthKey}>
                 <div>
                   <strong>{monthTitle(monthKey)}</strong>
-                  <span>{rows.length} expenses</span>
+                  <span>{rows.length} expenses ready for export</span>
                 </div>
                 <div className="row-actions">
-                  <strong>{formatCurrency(total)}</strong>
+                  <strong className="expense-amount">{formatCurrency(total)}</strong>
                   <button className="icon-button" onClick={() => download(monthKey)} aria-label="Download statement PDF">
                     <Download size={16} />
                   </button>
